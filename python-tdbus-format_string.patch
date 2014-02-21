@@ -1,0 +1,12 @@
+diff -dur python-tdbus-0.8.orig/lib/tdbus/_tdbus.c python-tdbus-0.8/lib/tdbus/_tdbus.c
+--- python-tdbus-0.8.orig/lib/tdbus/_tdbus.c	2013-06-11 22:58:46.000000000 +0200
++++ python-tdbus-0.8/lib/tdbus/_tdbus.c	2014-02-21 15:14:57.000000000 +0100
+@@ -34,7 +34,7 @@
+ 
+ #define RETURN_DBUS_ERROR(err) \
+     do { \
+-        if (dbus_error_is_set(&err)) RETURN_ERROR(err.message); \
++        if (dbus_error_is_set(&err)) RETURN_ERROR("%s", err.message); \
+         else RETURN_ERROR("unknown error"); \
+     } while (0)
+ 

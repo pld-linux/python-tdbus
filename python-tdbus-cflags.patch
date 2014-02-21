@@ -1,0 +1,12 @@
+diff -dur python-tdbus-0.8.orig/setup.py python-tdbus-0.8/setup.py
+--- python-tdbus-0.8.orig/setup.py	2013-06-13 11:26:53.000000000 +0200
++++ python-tdbus-0.8/setup.py	2014-02-21 15:12:22.000000000 +0100
+@@ -31,7 +31,7 @@
+ def pkgconfig(*args):
+     """Run pkg-config."""
+     output = subprocess.check_output(['pkg-config'] + list(args))
+-    return output.strip().split() + ['-O0']
++    return output.strip().split()
+ 
+ 
+ setup(
