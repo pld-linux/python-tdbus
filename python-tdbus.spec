@@ -21,10 +21,12 @@ BuildRequires:	rpmbuild(macros) >= 1.219
 %if %{with python2}
 BuildRequires:	python-devel
 BuildRequires:	python-distribute
+BuildRequires:	python-gevent
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
 BuildRequires:	python3-distribute
+BuildRequires:	python3-gevent
 BuildRequires:	python3-modules
 %endif
 Requires:	python-libs
