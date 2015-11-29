@@ -16,7 +16,7 @@ Source0:	https://pypi.python.org/packages/source/p/python-tdbus/%{name}-%{versio
 Patch0:		%{name}-cflags.patch
 URL:		https://github.com/hmvp/python-tdbus
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 %if %{with python2}
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
