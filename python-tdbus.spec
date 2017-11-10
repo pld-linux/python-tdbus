@@ -27,6 +27,9 @@ BuildRequires:	python3-devel
 BuildRequires:	python3-gevent
 BuildRequires:	python3-setuptools
 %endif
+%if %{with tests}
+BuildRequires:	/usr/bin/dbus-launch
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -87,6 +90,14 @@ Dokumentacja API %{module}.
 %patch0 -p1
 
 %build
+unset DISPLAY
+unset DBUS_SESSION_BUS_ADDRESS
+unset XDG_RUNTIME_DIR
+
+%if %{with tests}
+eval $(dbus-launch --sh-syntax)
+%endif
+
 %if %{with python2}
 %py_build %{?with_tests:test}
 %endif
