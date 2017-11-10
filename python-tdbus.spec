@@ -13,6 +13,7 @@ License:	MIT
 Group:		Libraries/Python
 Source0:	https://github.com/hmvp/python-tdbus/archive/v0.10/%{name}-%{version}.tar.gz
 # Source0-md5:	6033776d458aae287d2f9d92a801a42d
+Patch0:		use_after_free.patch
 URL:		https://github.com/hmvp/python-tdbus
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.710
@@ -83,6 +84,7 @@ Dokumentacja API %{module}.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %if %{with python2}
