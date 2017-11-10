@@ -2,34 +2,30 @@
 # Conditional build:
 %bcond_without	tests	# do not perform "make test"
 %bcond_without	python2 # CPython 2.x module
-%bcond_with	python3 # CPython 3.x module (not compatible yet)
+%bcond_without	python3 # CPython 3.x module
 
 %define 	module	tdbus
 Summary:	Simple ("trivial") Python bindings for D-BUS
 Name:		python-%{module}
-Version:	0.9
-Release:	0.1
+Version:	0.10
+Release:	1
 License:	MIT
 Group:		Libraries/Python
-Source0:	https://pypi.python.org/packages/source/p/python-tdbus/%{name}-%{version}.tar.gz
-# Source0-md5:	5452a6afe95f9a4fc62d94130abd553f
-Patch0:		%{name}-cflags.patch
+Source0:	https://github.com/hmvp/python-tdbus/archive/v0.10/%{name}-%{version}.tar.gz
+# Source0-md5:	6033776d458aae287d2f9d92a801a42d
 URL:		https://github.com/hmvp/python-tdbus
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.710
 %if %{with python2}
 BuildRequires:	python-devel
-BuildRequires:	python-setuptools
 BuildRequires:	python-gevent
+BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-gevent
-BuildRequires:	python3-modules
+BuildRequires:	python3-setuptools
 %endif
-Requires:	python-libs
-Requires:	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -87,7 +83,6 @@ Dokumentacja API %{module}.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %if %{with python2}
@@ -117,27 +112,20 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc AUTHORS CHANGES HACKING README.rst
 %dir %{py_sitedir}/%{module}
 %{py_sitedir}/%{module}/*.py[co]
 %attr(755,root,root) %{py_sitedir}/%{module}/_tdbus.so
-%dir %{py_sitedir}/%{module}/test
-%{py_sitedir}/%{module}/test/*.py*
-%if "%{py_ver}" > "2.4"
 %{py_sitedir}/*.egg-info
-%endif
 %endif
 
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
-%doc README
-%dir %{py_sitedir}/%{module}
-%{py_sitedir}/%{module}/__pycache__
-%{py_sitedir}/%{module}/*.py
-%attr(755,root,root) %{py_sitedir}/%{module}/_tdbus.so
-%dir %{py_sitedir}/%{module}/test
-%{py_sitedir}/%{module}/test/*.py
-%{py_sitedir}/%{module}/test/__pycache__
+%doc AUTHORS CHANGES HACKING README.rst
+%dir %{py3_sitedir}/%{module}
+%{py3_sitedir}/%{module}/__pycache__
+%{py3_sitedir}/%{module}/*.py
+%attr(755,root,root) %{py3_sitedir}/%{module}/_tdbus*.so
 %{py3_sitedir}/*.egg-info
 %endif
