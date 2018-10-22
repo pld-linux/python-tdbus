@@ -7,13 +7,13 @@
 %define 	module	tdbus
 Summary:	Simple ("trivial") Python bindings for D-BUS
 Name:		python-%{module}
-Version:	0.10
-Release:	2
+Version:	0.11
+Release:	1
 License:	MIT
 Group:		Libraries/Python
-Source0:	https://github.com/hmvp/python-tdbus/archive/v0.10/%{name}-%{version}.tar.gz
-# Source0-md5:	6033776d458aae287d2f9d92a801a42d
-Patch0:		use_after_free.patch
+Source0:	https://github.com/hmvp/python-tdbus/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	51eb65661eafcb56a10326187cd65355
+Patch0:		reference_counting.patch
 URL:		https://github.com/hmvp/python-tdbus
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.710
@@ -87,6 +87,7 @@ Dokumentacja API %{module}.
 
 %prep
 %setup -q
+
 %patch0 -p1
 
 %build
