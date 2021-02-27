@@ -8,7 +8,7 @@
 Summary:	Simple ("trivial") Python bindings for D-BUS
 Name:		python-%{module}
 Version:	0.11
-Release:	2
+Release:	3
 License:	MIT
 Group:		Libraries/Python
 Source0:	https://github.com/hmvp/python-tdbus/archive/v%{version}/%{name}-%{version}.tar.gz
